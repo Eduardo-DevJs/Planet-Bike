@@ -21,7 +21,7 @@ public class UsuarioDAO {
     PreparedStatement pstm = null;
     
     public ResultSet AutenticarLoginAdmin(UsuarioModel user){
-        String sql = "select * from admin where login = ?, senha = ?";
+        String sql = "select * from admin where login = ? and senha = ?";
         con = Conexao.createConnection();
         try {
             pstm = con.prepareStatement(sql);
@@ -36,7 +36,7 @@ public class UsuarioDAO {
     }
     
     public ResultSet AutenticarLoginFuncionario(UsuarioModel user){
-        String sql = "select * from funcionario where login = ?, senha = ?";
+        String sql = "select * from funcionario where login = ? and senha = ?";
         con = Conexao.createConnection();
         try {
             pstm = con.prepareStatement(sql);
