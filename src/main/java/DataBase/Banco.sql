@@ -1,9 +1,9 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/SQLTemplate.sql to edit this template
- */
-/**
- * Author:  mferreira
- * Created: 24 de out. de 2023
- */
+create database bd_planetbike;
+use bd_planetbike;
+
+create table funcionario(
+funcionarioId int(11) primary key auto_increment not null,
+nome varchar(200) not null,
+senha varchar(50) not null
+);
 
