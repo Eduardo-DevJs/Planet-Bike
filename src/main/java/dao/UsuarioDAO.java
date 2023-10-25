@@ -4,13 +4,13 @@
  */
 package dao;
 
-import conexao.Conexao;
+import com.mycompany.planetbike.conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import model.UsuarioModel;
+import com.mycompany.planetbike.model.UsuarioModel;
 
 /**
  *

@@ -8,7 +8,7 @@ import dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import model.UsuarioModel;
+import com.mycompany.planetbike.model.UsuarioModel;
 
 /**
  *
