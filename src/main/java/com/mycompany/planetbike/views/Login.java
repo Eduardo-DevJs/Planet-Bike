@@ -4,7 +4,7 @@
  */
 package com.mycompany.planetbike.views;
 
-import dao.UsuarioDAO;
+import com.mycompany.planetbike.dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -217,8 +217,8 @@ public class Login extends javax.swing.JFrame {
 
     public void Login() {
         UsuarioDAO dao = new UsuarioDAO();
-        String login = txtLogin.getText();
-        String senha = txtSenha.getText();
+        String login = txtLogin.getText().toLowerCase();
+        String senha = txtSenha.getText().toLowerCase();
         UsuarioModel usuario = new UsuarioModel(login, senha);
         ResultSet rsetAdmin = dao.AutenticarLoginAdmin(usuario);
         ResultSet rsetFunc = dao.AutenticarLoginFuncionario(usuario);

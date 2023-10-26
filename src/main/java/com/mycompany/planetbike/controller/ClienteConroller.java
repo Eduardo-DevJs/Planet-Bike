@@ -1,7 +1,7 @@
 package com.mycompany.planetbike.controller;
 
 import com.mycompany.planetbike.model.ClienteModel;
-import dao.ClienteDAO;
+import com.mycompany.planetbike.dao.ClienteDAO;
 
 public class ClienteConroller {
     public boolean CriarCliente(String nome, String celular, String email, String cpf, String cep, String endereco, String complemento){
