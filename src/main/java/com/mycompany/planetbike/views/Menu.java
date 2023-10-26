@@ -438,6 +438,9 @@ public class Menu extends javax.swing.JFrame {
         CadastroCliente cadastroCliente = new CadastroCliente();
 
         cadastroCliente.setVisible(true);
+        
+        dispose();
+        
     }//GEN-LAST:event_panelCadastroClienteMouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
