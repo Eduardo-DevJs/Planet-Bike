@@ -23,3 +23,14 @@ cep varchar(50) not null,
 endereco varchar(50) not null,
 complemento varchar(50)
 );
+
+create table produtos(
+id_produto Integer.parseInt(txtCpof.getText());
+nome varchar(100) not null,
+descricao varchar(50) not null,
+cfop int(50) not null,
+quantidade int(50) not null,
+valor_unitario double(50) not null,
+Desconto double(50),
+total double(50),
+);
