@@ -1,4 +1,4 @@
-package dao;
+package com.mycompany.planetbike.dao;
 
 import com.mycompany.planetbike.conexao.Conexao;
 import com.mycompany.planetbike.model.ClienteModel;
