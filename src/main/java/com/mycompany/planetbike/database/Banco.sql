@@ -25,12 +25,11 @@ complemento varchar(50)
 );
 
 create table produtos(
-id_produto Integer.parseInt(txtCpof.getText());
+id_produto int(10) primary key auto_increment not null,
 nome varchar(100) not null,
 descricao varchar(50) not null,
 cfop int(50) not null,
 quantidade int(50) not null,
-valor_unitario double(50) not null,
-Desconto double(50),
-total double(50),
+valor_unitario double not null,
+total double
 );

@@ -4,6 +4,8 @@
  */
 package com.mycompany.planetbike.views;
 
+import com.mycompany.planetbike.dao.ProdutoDAO;
+import com.mycompany.planetbike.model.ProdutoModel;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
@@ -39,13 +41,11 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         txtQuantidade = new javax.swing.JTextField();
         txtCpof = new javax.swing.JTextField();
         txtValorUnitario = new javax.swing.JTextField();
-        txtDesconto = new javax.swing.JTextField();
         btnLimpar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
@@ -90,10 +90,6 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("VALOR UNITÁRIO:");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("DESCONTO:");
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("TOTAL:");
@@ -112,15 +108,17 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtValorUnitario.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtValorUnitario.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
-        txtDesconto.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtDesconto.setMargin(new java.awt.Insets(2, 12, 2, 6));
-
         btnLimpar.setBackground(new java.awt.Color(207, 42, 39));
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnLimpar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpar.setText("LIMPAR");
         btnLimpar.setMaximumSize(new java.awt.Dimension(74, 26));
         btnLimpar.setMinimumSize(new java.awt.Dimension(74, 26));
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         btnCadastrar.setBackground(new java.awt.Color(0, 158, 15));
         btnCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -136,7 +134,13 @@ public class CadastroProduto extends javax.swing.JFrame {
         btnVoltar.setText("Voltar");
         btnVoltar.setMaximumSize(new java.awt.Dimension(74, 26));
         btnVoltar.setMinimumSize(new java.awt.Dimension(74, 26));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
+        btnCalcular.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnCalcular.setText("CALCULAR");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,9 +161,9 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCadastrar)
-                        .addGap(70, 70, 70)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCalcular)
-                        .addContainerGap(329, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
@@ -169,19 +173,21 @@ public class CadastroProduto extends javax.swing.JFrame {
                             .addComponent(txtDescricao)
                             .addComponent(txtCpof))
                         .addGap(114, 114, 114)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDesconto, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtQuantidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtValorUnitario, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(135, 135, 135))))
+                                    .addComponent(txtQuantidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtValorUnitario, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(0, 136, Short.MAX_VALUE))
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(135, 135, 135))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,11 +204,12 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 175, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 173, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCadastrar)
-                            .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -213,18 +220,12 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCpof, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCalcular)
-                        .addGap(25, 25, 25))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtCpof, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 0));
@@ -292,6 +293,16 @@ public class CadastroProduto extends javax.swing.JFrame {
         Calcular();
     }//GEN-LAST:event_btnCalcularActionPerformed
 
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        Limpar();
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -337,7 +348,6 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -345,7 +355,6 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtCpof;
-    private javax.swing.JTextField txtDesconto;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtQuantidade;
@@ -356,19 +365,27 @@ public class CadastroProduto extends javax.swing.JFrame {
     public void Cadastrar() {
         String nome = txtNome.getText();
         String Descricao = txtDescricao.getText();
-        int cfop = Integer.parseInt(txtCpof.getText());
+        int cpof = Integer.parseInt(txtCpof.getText());
         int quantidade = Integer.parseInt(txtQuantidade.getText());
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "A quantidade minima de produtos: 1");
         } else {
             Double valorUni =  quantidade * (Double.valueOf(txtValorUnitario.getText()));
-            Double desconto = Double.valueOf(txtDesconto.getText());
-            if (desconto > 0) {
-                valorUni = (valorUni)-desconto / 100 * valorUni;
-            }
             Double total = valorUni;
             txtTotal.setText(total.toString());
+            ProdutoModel add = new ProdutoModel(nome, Descricao, cpof, quantidade, valorUni, total);
+            ProdutoDAO dao = new ProdutoDAO();
+            dao.CadastrarProduto(add);
         }
+    }
+    
+    public void Limpar(){
+        txtNome.setText("");
+        txtDescricao.setText("");
+        txtCpof.setText("");
+        txtQuantidade.setText("");
+        txtTotal.setText("");
+        txtValorUnitario.setText("");
     }
     
     public void Calcular(){
@@ -377,10 +394,6 @@ public class CadastroProduto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "A quantidade minima de produtos: 1");
         } else {
             Double valorUni =  quantidade * (Double.valueOf(txtValorUnitario.getText()));
-            Double desconto = Double.valueOf(txtDesconto.getText());
-            if (desconto > 0) {
-                valorUni = (valorUni)-desconto / 100 * valorUni;
-            }
             Double total = valorUni;
             txtTotal.setText(total.toString());
         }
