@@ -4,7 +4,7 @@
  */
 package com.mycompany.planetbike.views;
 
-import dao.UsuarioDAO;
+import com.mycompany.planetbike.dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
