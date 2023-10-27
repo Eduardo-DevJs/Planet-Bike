@@ -116,7 +116,7 @@
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtNome" pref="298" max="32767" attributes="0"/>
                                   <Component id="txtDescricao" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtCpof" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtCfop" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -129,7 +129,7 @@
                                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="0" pref="136" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="139" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="txtTotal" alignment="0" max="32767" attributes="0"/>
                                       </Group>
@@ -181,7 +181,7 @@
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="txtCpof" min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Component id="txtCfop" min="-2" pref="42" max="-2" attributes="0"/>
                                   <Component id="txtTotal" min="-2" pref="42" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -305,7 +305,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtCpof">
+            <Component class="javax.swing.JTextField" name="txtCfop">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="16" style="0"/>

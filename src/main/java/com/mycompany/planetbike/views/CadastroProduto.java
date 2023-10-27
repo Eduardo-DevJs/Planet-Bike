@@ -44,7 +44,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         txtQuantidade = new javax.swing.JTextField();
-        txtCpof = new javax.swing.JTextField();
+        txtCfop = new javax.swing.JTextField();
         txtValorUnitario = new javax.swing.JTextField();
         btnLimpar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
@@ -102,8 +102,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtQuantidade.setMargin(new java.awt.Insets(2, 12, 2, 6));
         txtQuantidade.setPreferredSize(new java.awt.Dimension(64, 28));
 
-        txtCpof.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtCpof.setMargin(new java.awt.Insets(2, 12, 2, 6));
+        txtCfop.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtCfop.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
         txtValorUnitario.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtValorUnitario.setMargin(new java.awt.Insets(2, 12, 2, 6));
@@ -171,7 +171,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                             .addComponent(txtDescricao)
-                            .addComponent(txtCpof))
+                            .addComponent(txtCfop))
                         .addGap(114, 114, 114)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -182,7 +182,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(0, 136, Short.MAX_VALUE))
+                                        .addGap(0, 139, Short.MAX_VALUE))
                                     .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(135, 135, 135))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -223,7 +223,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCpof, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCfop, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -354,7 +354,7 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField txtCpof;
+    private javax.swing.JTextField txtCfop;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtQuantidade;
@@ -365,7 +365,7 @@ public class CadastroProduto extends javax.swing.JFrame {
     public void Cadastrar() {
         String nome = txtNome.getText();
         String Descricao = txtDescricao.getText();
-        int cpof = Integer.parseInt(txtCpof.getText());
+        int cpof = Integer.parseInt(txtCfop.getText());
         int quantidade = Integer.parseInt(txtQuantidade.getText());
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "A quantidade minima de produtos: 1");
@@ -382,10 +382,11 @@ public class CadastroProduto extends javax.swing.JFrame {
     public void Limpar(){
         txtNome.setText("");
         txtDescricao.setText("");
-        txtCpof.setText("");
+        txtCfop.setText("");
         txtQuantidade.setText("");
         txtTotal.setText("");
         txtValorUnitario.setText("");
+        txtNome.requestFocus();
     }
     
     public void Calcular(){

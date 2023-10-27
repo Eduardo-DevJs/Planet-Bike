@@ -12,7 +12,7 @@ public class ProdutoModel {
     private int id;
     private String nome;
     private String descricao;
-    private int cpof;
+    private int cfop;
     private int quantidade;
     private double valorUni;
     private double total;
@@ -20,10 +20,10 @@ public class ProdutoModel {
     public ProdutoModel() {
     }
 
-    public ProdutoModel(String nome, String descricao, int cpof, int quantidade, double valorUni, double total) {
+    public ProdutoModel(String nome, String descricao, int cfop, int quantidade, double valorUni, double total) {
         this.nome = nome;
         this.descricao = descricao;
-        this.cpof = cpof;
+        this.cfop = cfop;
         this.quantidade = quantidade;
         this.valorUni = valorUni;
         this.total = total;
@@ -53,12 +53,12 @@ public class ProdutoModel {
         this.descricao = descricao;
     }
 
-    public int getCpof() {
-        return cpof;
+    public int getCfop() {
+        return cfop;
     }
 
-    public void setCpof(int cpof) {
-        this.cpof = cpof;
+    public void setCfop(int cfop) {
+        this.cfop = cfop;
     }
 
     public int getQuantidade() {

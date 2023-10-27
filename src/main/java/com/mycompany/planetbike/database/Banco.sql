@@ -28,7 +28,7 @@ create table produtos(
 id_produto int(10) primary key auto_increment not null,
 nome varchar(100) not null,
 descricao varchar(50) not null,
-cpof int(50) not null,
+cfop int(50) not null,
 quantidade int(50) not null,
 valor_unitario double not null,
 total double

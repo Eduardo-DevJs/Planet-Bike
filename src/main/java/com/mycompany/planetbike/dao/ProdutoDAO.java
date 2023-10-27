@@ -16,13 +16,13 @@ public class ProdutoDAO {
     Connection con = null;
     PreparedStatement pstm = null;
     public void CadastrarProduto(ProdutoModel produto){
-        String sql = "insert into produtos (nome,descricao,cpof,quantidade,valor_unitario,total) values(?,?,?,?,?,?)";
+        String sql = "insert into produtos (nome,descricao,cfop,quantidade,valor_unitario,total) values(?,?,?,?,?,?)";
         con = Conexao.createConnection();
         try {
             pstm = con.prepareStatement(sql);
             pstm.setString(1, produto.getNome());
             pstm.setString(2, produto.getDescricao());
-            pstm.setInt(3,produto.getCpof());
+            pstm.setInt(3,produto.getCfop());
             pstm.setInt(4,produto.getQuantidade());
             pstm.setDouble(5, produto.getValorUni());
             pstm.setDouble(6, produto.getTotal());
