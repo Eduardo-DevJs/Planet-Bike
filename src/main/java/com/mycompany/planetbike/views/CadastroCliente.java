@@ -287,6 +287,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         // TODO add your handling code here:
         CadastroCliente();
+             limparCampos();
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -358,6 +359,17 @@ public class CadastroCliente extends javax.swing.JFrame {
             System.out.println("Erro ao cadastrar cliente " + e);
         }
 
+    }
+    
+    public void limparCampos() {
+        txtCep.setText("");
+        txtComplemento.setText("");
+        txtCpf.setText("");
+        txtEmail.setText("");
+        txtEndereco.setText("");
+        txtNome.setText("");
+        txtTelefone.setText("");
+        txtNome.requestFocus();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
