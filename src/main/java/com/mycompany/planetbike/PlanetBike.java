@@ -1,17 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
 
 package com.mycompany.planetbike;
 
-/**
- *
- * @author eliria
- */
+import com.mycompany.planetbike.views.Login;
+
 public class PlanetBike {
 
     public static void main(String[] args) {
-        System.out.println("Teste");
+        Login login = new Login();
+        login.setVisible(true);
+       
+        
     }
 }
     
