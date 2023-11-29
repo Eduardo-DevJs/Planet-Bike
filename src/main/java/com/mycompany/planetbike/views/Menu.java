@@ -87,6 +87,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel3.setPreferredSize(new java.awt.Dimension(931, 463));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,14 +267,14 @@ public class Menu extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Visualizar Clientes 64px.png"))); // NOI18N
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel17.setText("ORDEM DE SERVICOS");
+        jLabel17.setText("CLIENTES");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(144, Short.MAX_VALUE)
                 .addComponent(jLabel17)
                 .addGap(24, 24, 24))
             .addGroup(jPanel8Layout.createSequentialGroup()
