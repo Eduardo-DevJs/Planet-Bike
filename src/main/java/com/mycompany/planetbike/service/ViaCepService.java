@@ -30,9 +30,6 @@ public class ViaCepService {
 			}
 
 		}
-                
-                
-
 		return end;
 	}
 
