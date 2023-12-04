@@ -6,6 +6,7 @@ package com.mycompany.planetbike.views;
 
 import com.mycompany.planetbike.dao.ProdutoDAO;
 import com.mycompany.planetbike.model.ProdutoModel;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
@@ -101,12 +102,22 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtQuantidade.setMargin(new java.awt.Insets(2, 12, 2, 6));
         txtQuantidade.setPreferredSize(new java.awt.Dimension(64, 28));
+        txtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtQuantidadeKeyPressed(evt);
+            }
+        });
 
         txtCfop.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtCfop.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
         txtValorUnitario.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtValorUnitario.setMargin(new java.awt.Insets(2, 12, 2, 6));
+        txtValorUnitario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtValorUnitarioKeyPressed(evt);
+            }
+        });
 
         btnLimpar.setBackground(new java.awt.Color(207, 42, 39));
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -166,16 +177,13 @@ public class CadastroProduto extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel1))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel2))
-                                .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel4))
@@ -305,6 +313,22 @@ public class CadastroProduto extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    private void txtValorUnitarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorUnitarioKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           int quantidade = Integer.parseInt(txtQuantidade.getText());
+           Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
+           txtTotal.setText(valorUni.toString());
+       }
+    }//GEN-LAST:event_txtValorUnitarioKeyPressed
+
+    private void txtQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           int quantidade = Integer.parseInt(txtQuantidade.getText());
+           Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
+           txtTotal.setText(valorUni.toString());
+       }
+    }//GEN-LAST:event_txtQuantidadeKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -372,16 +396,26 @@ public class CadastroProduto extends javax.swing.JFrame {
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "A quantidade minima de produtos: 1");
         } else {
-            Double valorUni =  quantidade * (Double.valueOf(txtValorUnitario.getText()));
+            Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
             Double total = valorUni;
             txtTotal.setText(total.toString());
             ProdutoModel add = new ProdutoModel(nome, Descricao, cpof, quantidade, valorUni, total);
             ProdutoDAO dao = new ProdutoDAO();
             dao.CadastrarProduto(add);
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja continuar cadastrando?");
+
+            if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
+                Menu menu = new Menu();
+                menu.setVisible(true);
+
+                dispose();
+            }else {
+                JOptionPane.showMessageDialog(null, "Preencha os campos");
+            }
         }
     }
-    
-    public void Limpar(){
+
+    public void Limpar() {
         txtNome.setText("");
         txtDescricao.setText("");
         txtCfop.setText("");
@@ -390,13 +424,13 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtValorUnitario.setText("");
         txtNome.requestFocus();
     }
-    
-    public void Calcular(){
+
+    public void Calcular() {
         int quantidade = Integer.parseInt(txtQuantidade.getText());
         if (quantidade < 1) {
-            JOptionPane.showMessageDialog(null, "A quantidade minima de produtos: 1");
+            JOptionPane.showMessageDialog(null, "A quantidade minima de produtos é 1");
         } else {
-            Double valorUni =  quantidade * (Double.valueOf(txtValorUnitario.getText()));
+            Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
             Double total = valorUni;
             txtTotal.setText(total.toString());
         }
