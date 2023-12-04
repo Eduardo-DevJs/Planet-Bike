@@ -362,6 +362,8 @@ public class CadastroCliente extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     public void CadastroCliente() {
         ClienteModel clienteModel = new ClienteModel();
@@ -373,6 +375,8 @@ public class CadastroCliente extends javax.swing.JFrame {
         String cepCliente = txtCep.getText();
         String enderecoCliente = txtBairro.getText();
         String complemento = txtEndereco.getText();
+        
+
 
         boolean sucesso;
 
@@ -398,6 +402,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         }
 
     }
+    
 
     public void limparCampos() {
         txtCep.setText("");
