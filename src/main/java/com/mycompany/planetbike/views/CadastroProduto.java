@@ -50,7 +50,6 @@ public class CadastroProduto extends javax.swing.JFrame {
         btnLimpar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        btnCalcular = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -151,14 +150,6 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
-        btnCalcular.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        btnCalcular.setText("CALCULAR");
-        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcularActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -171,9 +162,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCalcular))
+                        .addComponent(btnCadastrar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,8 +213,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -299,10 +287,6 @@ public class CadastroProduto extends javax.swing.JFrame {
         Cadastrar();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        Calcular();
-    }//GEN-LAST:event_btnCalcularActionPerformed
-
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         Limpar();
     }//GEN-LAST:event_btnLimparActionPerformed
@@ -366,7 +350,6 @@ public class CadastroProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
@@ -394,7 +377,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         int cpof = Integer.parseInt(txtCfop.getText());
         int quantidade = Integer.parseInt(txtQuantidade.getText());
         if (quantidade < 1) {
-            JOptionPane.showMessageDialog(null, "A quantidade minima de produtos: 1");
+            JOptionPane.showMessageDialog(null, "Quantidade minima de produtos: 1");
         } else {
             Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
             Double total = valorUni;
@@ -423,16 +406,5 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtTotal.setText("");
         txtValorUnitario.setText("");
         txtNome.requestFocus();
-    }
-
-    public void Calcular() {
-        int quantidade = Integer.parseInt(txtQuantidade.getText());
-        if (quantidade < 1) {
-            JOptionPane.showMessageDialog(null, "A quantidade minima de produtos é 1");
-        } else {
-            Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
-            Double total = valorUni;
-            txtTotal.setText(total.toString());
-        }
     }
 }
