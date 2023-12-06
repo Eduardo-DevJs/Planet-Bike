@@ -192,6 +192,11 @@
               </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtSenha">
+              <Properties>
+                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                  <Insets value="[2, 12, 2, 6]"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
