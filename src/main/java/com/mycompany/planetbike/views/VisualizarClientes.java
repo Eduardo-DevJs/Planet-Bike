@@ -89,6 +89,11 @@ public class VisualizarClientes extends javax.swing.JFrame {
 
         jButton1.setText("PESQUISAR");
 
+        tabelaClientes = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
         tabelaClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,7 +106,9 @@ public class VisualizarClientes extends javax.swing.JFrame {
                 "ID Cliente", "Nome", "Celular", "Email", "CPF", "CEP", "Endereço", "Bairro"
             }
         ));
+        tabelaClientes.setFocusable(false);
         tabelaClientes.setRowHeight(30);
+        tabelaClientes.getTableHeader().setReorderingAllowed(false);
         tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaClientesMouseClicked(evt);
