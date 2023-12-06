@@ -273,11 +273,6 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel17.setText("CLIENTES");
-        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel17MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelVisualizaClientesLayout = new javax.swing.GroupLayout(panelVisualizaClientes);
         panelVisualizaClientes.setLayout(panelVisualizaClientesLayout);
@@ -471,8 +466,6 @@ public class Menu extends javax.swing.JFrame {
         login.setVisible(true);
 
         dispose();
-
-
     }//GEN-LAST:event_btnTrocarActionPerformed
 
     private void panelEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEstoqueMouseClicked
@@ -481,12 +474,7 @@ public class Menu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_panelEstoqueMouseClicked
 
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel17MouseClicked
-
     private void panelVisualizaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelVisualizaClientesMouseClicked
-        // TODO add your handling code here:
         VisualizarClientes visualizarClientes = new VisualizarClientes();
         visualizarClientes.setVisible(true);
         dispose();

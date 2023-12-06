@@ -529,9 +529,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="CLIENTES"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel17MouseClicked"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
