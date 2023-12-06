@@ -9,6 +9,7 @@ import com.mycompany.planetbike.model.ClienteModel;
 import com.mycompany.planetbike.dao.ClienteDAO;
 import com.mycompany.planetbike.model.Endereco;
 import com.mycompany.planetbike.service.ViaCepService;
+import com.mycompany.planetbike.validadoremail.ValidadorEmail;
 import com.mycompany.planetbike.validarcpf.ValidadorCPF;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -369,7 +370,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
     }
 
-   public void CadastroCliente() {
+public void CadastroCliente() {
     ClienteModel clienteModel = new ClienteModel();
 
     String nomeCliente = txtNome.getText();
@@ -387,6 +388,12 @@ public class CadastroCliente extends javax.swing.JFrame {
         if (!ValidadorCPF.validarCPF(cpfCliente)) {
             JOptionPane.showMessageDialog(null, "CPF inválido. Por favor, insira um CPF válido.");
             return; // Encerrar o método se o CPF for inválido
+        }
+
+        // Validar o e-mail antes de prosseguir
+        if (!ValidadorEmail.validarEmail(emailCliente)) {
+            JOptionPane.showMessageDialog(null, "E-mail inválido. Por favor, insira um e-mail válido.");
+            return; // Encerrar o método se o e-mail for inválido
         }
 
         ClienteController clienteController = new ClienteController();
@@ -409,6 +416,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         System.out.println("Erro ao cadastrar cliente " + e);
     }
 }
+
 
 
     public void limparCampos() {
