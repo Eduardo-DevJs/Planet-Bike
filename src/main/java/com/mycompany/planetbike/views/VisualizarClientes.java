@@ -342,7 +342,7 @@ public class VisualizarClientes extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
-        Menu menu = new Menu();    
+        Menu menu = new Menu();
         menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
@@ -444,6 +444,13 @@ public class VisualizarClientes extends javax.swing.JFrame {
         String cpf = txtCpf.getText();
         String bairro = txtBairro.getText();
 
+        // Verifique se a pessoa realmente deseja editar o cliente
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente editar este cliente?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resposta != JOptionPane.YES_OPTION) {
+            return;
+        }
+
         try {
             ClienteModel cm = new ClienteModel();
 
@@ -456,14 +463,15 @@ public class VisualizarClientes extends javax.swing.JFrame {
             cm.setEndereco(endereco);
             cm.setComplemento(bairro);
 
-            cdao.atulizarCliente(cm);
+            cdao.atualizarCliente(cm);
 
-            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
 
             ListarClientes();
 
         } catch (Exception e) {
-            System.out.println("Erro ao editar cliente (tela) " + e);
+            JOptionPane.showMessageDialog(null, "Erro ao editar cliente: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Erro ao editar cliente (tela): " + e);
         }
     }
 
@@ -472,7 +480,8 @@ public class VisualizarClientes extends javax.swing.JFrame {
         int id_cliente = Integer.parseInt(txtIdCli.getText());
         ClienteDAO cdao = new ClienteDAO();
 
-        confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir? ");
+        confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente exlcuir este cliente?", "Confirmação", JOptionPane.YES_NO_OPTION);
+    
 
         if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(null, "Ação cancelada");

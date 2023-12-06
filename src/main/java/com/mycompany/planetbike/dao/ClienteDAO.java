@@ -72,7 +72,7 @@ public class ClienteDAO {
         return clientes;
     }
     
-     public void atulizarCliente(ClienteModel cm) {
+     public void atualizarCliente(ClienteModel cm) {
         String sql = "UPDATE clientes SET nome=?, celular=?, email=?, cpf=?, cep=?, endereco=?, complemento=? WHERE id_cliente=?";
 
         Connection con = null;
