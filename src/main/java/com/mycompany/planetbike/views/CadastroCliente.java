@@ -384,16 +384,16 @@ public void CadastroCliente() {
     boolean sucesso;
 
     try {
-        // Validar o CPF antes de prosseguir
+  
         if (!ValidadorCPF.validarCPF(cpfCliente)) {
             JOptionPane.showMessageDialog(null, "CPF inválido. Por favor, insira um CPF válido.");
-            return; // Encerrar o método se o CPF for inválido
+            return;
         }
 
-        // Validar o e-mail antes de prosseguir
+  
         if (!ValidadorEmail.validarEmail(emailCliente)) {
             JOptionPane.showMessageDialog(null, "E-mail inválido. Por favor, insira um e-mail válido.");
-            return; // Encerrar o método se o e-mail for inválido
+            return; 
         }
 
         ClienteController clienteController = new ClienteController();
@@ -413,7 +413,7 @@ public void CadastroCliente() {
             JOptionPane.showMessageDialog(null, "Preencha os campos");
         }
     } catch (Exception e) {
-        System.out.println("Erro ao cadastrar cliente " + e);
+        System.out.println("Erro ao cadastrar cliente TELA: " + e);
     }
 }
 
