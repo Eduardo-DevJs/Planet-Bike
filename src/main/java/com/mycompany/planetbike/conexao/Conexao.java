@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class Conexao {
     public static final String url = "jdbc:mysql://localhost/bd_planetbike";
     public static final String user = "root";
-    public static final String pass = "";
+    public static final String pass = "root";
     
     public static Connection createConnection(){
         Connection con = null;

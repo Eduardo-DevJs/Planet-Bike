@@ -18,11 +18,12 @@ id_cliente int(10) primary key auto_increment not null,
 nome varchar(100) not null,
 celular varchar(50) not null,
 email varchar(50) not null,
-cpf varchar(50) not null,
+cpf varchar(50) unique not null,
 cep varchar(50) not null,
 endereco varchar(50) not null,
 complemento varchar(50)
 );
+
 
 create table produtos(
 id_produto int(10) primary key auto_increment not null,

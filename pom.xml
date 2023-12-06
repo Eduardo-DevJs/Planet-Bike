@@ -32,9 +32,8 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
+            <version>4.5.14</version>
         </dependency>
- 
     </dependencies>
     
     <properties>
@@ -43,4 +42,16 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>com.mycompany.planetbike.PlanetBike</exec.mainClass>
     </properties>
+    
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository> 
+    </repositories>
 </project>

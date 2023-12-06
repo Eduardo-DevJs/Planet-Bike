@@ -4,12 +4,12 @@
  */
 package com.mycompany.planetbike.views;
 
-
-import com.mycompany.planetbike.controller.ClienteConroller;
+import com.mycompany.planetbike.controller.ClienteController;
 import com.mycompany.planetbike.model.ClienteModel;
 import com.mycompany.planetbike.dao.ClienteDAO;
 import com.mycompany.planetbike.model.Endereco;
 import com.mycompany.planetbike.service.ViaCepService;
+import com.mycompany.planetbike.validarcpf.ValidadorCPF;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -118,7 +118,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         txtBairro.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
         try {
-            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###.###-##")));
+            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -311,19 +311,25 @@ public class CadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void txtCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCepKeyPressed
-          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ViaCepService vcs = new ViaCepService();
 
             try {
-                // Obter o endereço a partir do CEP
                 Endereco endereco = vcs.getEndereco(txtCep.getText());
 
-                // Preencher os campos de texto com os dados obtidos do ViaCep
-                txtEndereco.setText(endereco.getLogradouro());
-                txtBairro.setText(endereco.getBairro());
+                // Verificar se o endereço foi encontrado
+                if (endereco != null && endereco.getLogradouro() != null && endereco.getBairro() != null) {
+                    // Preencher os campos de texto com os dados obtidos do ViaCep
+                    txtEndereco.setText(endereco.getLogradouro());
+                    txtBairro.setText(endereco.getBairro());
+                } else {
+                    // Caso o CEP não exista ou os campos de endereço/bairro sejam nulos
+                    JOptionPane.showMessageDialog(this, "CEP não encontrado ou informações de endereço incompletas. Verifique o CEP digitado.");
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erro ao buscar o CEP. Verifique sua conexão com a internet.");
             }
         }
     }//GEN-LAST:event_txtCepKeyPressed
@@ -363,41 +369,47 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
     }
 
-    public void CadastroCliente() {
-        ClienteModel clienteModel = new ClienteModel();
+   public void CadastroCliente() {
+    ClienteModel clienteModel = new ClienteModel();
 
-        String nomeCliente = txtNome.getText();
-        String celularCliente = txtTelefone.getText();
-        String emailCliente = txtEmail.getText();
-        String cpfCliente = txtCpf.getText();
-        String cepCliente = txtCep.getText();
-        String enderecoCliente = txtBairro.getText();
-        String complemento = txtEndereco.getText();
+    String nomeCliente = txtNome.getText();
+    String celularCliente = txtTelefone.getText();
+    String emailCliente = txtEmail.getText();
+    String cpfCliente = txtCpf.getText();
+    String cepCliente = txtCep.getText();
+    String enderecoCliente = txtBairro.getText();
+    String complemento = txtEndereco.getText();
 
-        boolean sucesso;
+    boolean sucesso;
 
-        try {
-            ClienteConroller clienteController = new ClienteConroller();
-            sucesso = clienteController.CriarCliente(nomeCliente, celularCliente, emailCliente, cpfCliente, cepCliente, enderecoCliente, complemento);
-            if (sucesso == true) {
-                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-                int confirm = JOptionPane.showConfirmDialog(null, "Deseja voltar ao cadastro?");
-                
-                if(confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION){
-                    Menu menu = new Menu();
-                    menu.setVisible(true);
-                    
-                    dispose();
-                }
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Preencha os campos");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao cadastrar cliente " + e);
+    try {
+        // Validar o CPF antes de prosseguir
+        if (!ValidadorCPF.validarCPF(cpfCliente)) {
+            JOptionPane.showMessageDialog(null, "CPF inválido. Por favor, insira um CPF válido.");
+            return; // Encerrar o método se o CPF for inválido
         }
 
+        ClienteController clienteController = new ClienteController();
+        sucesso = clienteController.CriarCliente(nomeCliente, celularCliente, emailCliente, cpfCliente, cepCliente, enderecoCliente, complemento);
+
+        if (sucesso) {
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja voltar ao cadastro?");
+
+            if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
+                Menu menu = new Menu();
+                menu.setVisible(true);
+                dispose();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha os campos");
+        }
+    } catch (Exception e) {
+        System.out.println("Erro ao cadastrar cliente " + e);
     }
+}
+
 
     public void limparCampos() {
         txtCep.setText("");
