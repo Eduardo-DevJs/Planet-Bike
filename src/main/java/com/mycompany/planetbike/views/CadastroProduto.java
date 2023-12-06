@@ -140,8 +140,10 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(0, 153, 0));
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        btnVoltar.setText("Voltar");
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("VOLTAR");
         btnVoltar.setMaximumSize(new java.awt.Dimension(74, 26));
         btnVoltar.setMinimumSize(new java.awt.Dimension(74, 26));
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -300,16 +302,16 @@ public class CadastroProduto extends javax.swing.JFrame {
     private void txtValorUnitarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorUnitarioKeyPressed
        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
            int quantidade = Integer.parseInt(txtQuantidade.getText());
-           Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
-           txtTotal.setText(valorUni.toString());
+           Double total = quantidade * (Double.valueOf(txtValorUnitario.getText()));
+           txtTotal.setText(total.toString());
        }
     }//GEN-LAST:event_txtValorUnitarioKeyPressed
 
     private void txtQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
            int quantidade = Integer.parseInt(txtQuantidade.getText());
-           Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
-           txtTotal.setText(valorUni.toString());
+           Double total = quantidade * (Double.valueOf(txtValorUnitario.getText()));
+           txtTotal.setText(total.toString());
        }
     }//GEN-LAST:event_txtQuantidadeKeyPressed
 
@@ -379,8 +381,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         if (quantidade < 1) {
             JOptionPane.showMessageDialog(null, "Quantidade minima de produtos: 1");
         } else {
-            Double valorUni = quantidade * (Double.valueOf(txtValorUnitario.getText()));
-            Double total = valorUni;
+            Double valorUni = (Double.valueOf(txtValorUnitario.getText()));
+            Double total = quantidade * (Double.valueOf(txtValorUnitario.getText()));
             txtTotal.setText(total.toString());
             ProdutoModel add = new ProdutoModel(nome, Descricao, cpof, quantidade, valorUni, total);
             ProdutoDAO dao = new ProdutoDAO();

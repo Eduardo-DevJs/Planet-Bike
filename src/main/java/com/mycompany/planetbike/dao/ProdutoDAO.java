@@ -72,11 +72,11 @@ public class ProdutoDAO {
     }
 
     public void atualizarProduto(ProdutoModel pm) {
-        String sql = "UPDATE produtos SET nome=?,descricao=?,cfop=?,quantidade=?, valor_unitario=? WHERE id_produto=?";
+        String sql = "UPDATE produtos SET nome=?,descricao=?,cfop=?,quantidade=?, valor_unitario=?, total = ? WHERE id_produto=?";
 
         Connection connection = null;
         PreparedStatement prepareStatement = null;
-
+        double total = pm.getQuantidade() * pm.getValorUni();
         try {
 
             connection = Conexao.createConnection();
@@ -86,8 +86,9 @@ public class ProdutoDAO {
             prepareStatement.setString(2, pm.getDescricao());
             prepareStatement.setInt(3, pm.getCfop());
             prepareStatement.setInt(4, pm.getQuantidade());
-
-            prepareStatement.setInt(5, pm.getId());
+            prepareStatement.setDouble(5, pm.getValorUni());
+            prepareStatement.setDouble(6, total);
+            prepareStatement.setInt(7, pm.getId());
 
             prepareStatement.execute();
 
