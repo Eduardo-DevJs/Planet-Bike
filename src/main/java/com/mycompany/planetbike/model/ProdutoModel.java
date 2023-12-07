@@ -29,6 +29,18 @@ public class ProdutoModel {
         this.total = total;
     }
 
+    public ProdutoModel(int id, String nome, String descricao, int cfop, int quantidade, double valorUni, double total) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.cfop = cfop;
+        this.quantidade = quantidade;
+        this.valorUni = valorUni;
+        this.total = total;
+    }
+    
+    
+
     public int getId() {
         return id;
     }
