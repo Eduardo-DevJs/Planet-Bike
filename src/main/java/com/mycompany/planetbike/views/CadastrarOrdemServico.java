@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author chxse
  */
-public class VisualizarOrdemServico extends javax.swing.JFrame {
+public class CadastrarOrdemServico extends javax.swing.JFrame {
 
     Connection con = null;
     PreparedStatement ps = null;
@@ -25,7 +25,7 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
     /**
      * Creates new form VisualizarOrdemServico
      */
-    public VisualizarOrdemServico() {
+    public CadastrarOrdemServico() {
         initComponents();
         con = Conexao.createConnection();
     }
@@ -527,20 +527,21 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VisualizarOrdemServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarOrdemServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VisualizarOrdemServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarOrdemServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VisualizarOrdemServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarOrdemServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VisualizarOrdemServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarOrdemServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisualizarOrdemServico().setVisible(true);
+                new CadastrarOrdemServico().setVisible(true);
             }
         });
     }
