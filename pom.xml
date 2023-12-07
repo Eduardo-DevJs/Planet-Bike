@@ -34,6 +34,21 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.14</version>
         </dependency>
+        
+       
+        <!-- Dependência para rs2xml -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.17.0</version> <!-- Use a versão mais recente disponível -->
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version> <!-- Use a versão mais recente disponível -->
+        </dependency>
+
     </dependencies>
     
     <properties>

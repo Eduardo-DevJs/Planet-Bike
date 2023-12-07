@@ -4,17 +4,30 @@
  */
 package com.mycompany.planetbike.views;
 
+import com.mycompany.planetbike.conexao.Conexao;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author chxse
  */
 public class VisualizarOrdemServico extends javax.swing.JFrame {
 
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    // A linha abaixo cria uma variavel para armazenar um texto de acordo com o radion button selecionado
+    private String tipo;
+
     /**
      * Creates new form VisualizarOrdemServico
      */
     public VisualizarOrdemServico() {
         initComponents();
+        con = Conexao.createConnection();
     }
 
     /**
@@ -26,19 +39,45 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtModelo = new javax.swing.JTextField();
+        txtCor = new javax.swing.JTextField();
+        txtValorTotal = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDescricao = new javax.swing.JTextArea();
+        jLabel13 = new javax.swing.JLabel();
+        txtFuncionario = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        txtData = new javax.swing.JTextField();
+        txtOs = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        radioOrcamento = new javax.swing.JRadioButton();
+        radioOrdem = new javax.swing.JRadioButton();
+        btnCadastrar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cboOsSituacao = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        txtCliPesquisar = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtClieId = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblClientes = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        btnImprimir = new javax.swing.JButton();
+        btnPesquisarOs = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Visualizar Ordem");
@@ -57,7 +96,7 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addContainerGap(672, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,30 +111,127 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 0));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Modelo *");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("COR *");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("DESCRIÇÃO *");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("VALOR TOTAL");
+
+        txtModelo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtModelo.setMargin(new java.awt.Insets(2, 12, 2, 6));
+
+        txtCor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtCor.setMargin(new java.awt.Insets(2, 12, 2, 6));
+
+        txtValorTotal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtValorTotal.setText("0");
+        txtValorTotal.setMargin(new java.awt.Insets(2, 12, 2, 6));
+
+        txtDescricao.setColumns(20);
+        txtDescricao.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtDescricao.setRows(5);
+        jScrollPane2.setViewportView(txtDescricao);
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("FUNCIONARIO *");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(txtModelo)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtValorTotal))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(222, 222, 222)
+                                .addComponent(jLabel13)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFuncionario)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel9)
+                .addGap(1, 1, 1)
+                .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFuncionario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         jPanel4.setBackground(new java.awt.Color(240, 240, 240));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField2.setMargin(new java.awt.Insets(2, 12, 2, 6));
+        txtData.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtData.setEnabled(false);
+        txtData.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField1.setMargin(new java.awt.Insets(2, 12, 2, 6));
+        txtOs.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtOs.setEnabled(false);
+        txtOs.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel3.setText("Nº OS");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel4.setText("DATA");
+
+        buttonGroup1.add(radioOrcamento);
+        radioOrcamento.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        radioOrcamento.setText("Orçamento");
+        radioOrcamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioOrcamentoActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(radioOrdem);
+        radioOrdem.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        radioOrdem.setText("Ordem de serviço");
+        radioOrdem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioOrdemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -105,11 +241,13 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtOs, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioOrcamento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioOrdem)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -121,41 +259,168 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                    .addComponent(txtOs, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioOrdem)
+                    .addComponent(radioOrcamento))
+                .addGap(14, 14, 14))
         );
 
-        jButton1.setText("CADASTRAR");
+        btnCadastrar.setText("CADASTRAR");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("EDITAR");
+        btnEditar.setText("EDITAR");
+        btnEditar.setEnabled(false);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("EXCLUIR");
+        btnExcluir.setText("EXCLUIR");
+        btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel5.setText("SITUAÇÃO");
+
+        cboOsSituacao.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cboOsSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "A Fazer", "Andamento", "Finalizado", "Abandonado pelo cliente" }));
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 16))); // NOI18N
+
+        txtCliPesquisar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtCliPesquisar.setMargin(new java.awt.Insets(2, 12, 2, 6));
+        txtCliPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCliPesquisarKeyReleased(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel6.setText("PESQUISAR");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel7.setText("ID *");
+
+        txtClieId.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtClieId.setEnabled(false);
+        txtClieId.setMargin(new java.awt.Insets(2, 12, 2, 6));
+
+        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Id", "Nome", "Telefone"
+            }
+        ));
+        tblClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblClientes);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCliPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtClieId))))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(txtClieId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(txtCliPesquisar)
+                        .addGap(8, 8, 8)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel8.setText("Campos obrigatórios *");
+
+        btnImprimir.setText("IMPRIMIR ORDEM");
+        btnImprimir.setEnabled(false);
+
+        btnPesquisarOs.setText("PESQUISAR");
+        btnPesquisarOs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarOsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(267, 267, 267))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisarOs)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnImprimir)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5)
+                            .addComponent(cboOsSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel8))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(330, 330, 330))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,16 +428,27 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(49, 49, 49)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboOsSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addComponent(btnExcluir)
+                    .addComponent(btnEditar)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnImprimir)
+                    .addComponent(btnPesquisarOs))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,14 +459,54 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void txtCliPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCliPesquisarKeyReleased
+        // TODO add your handling code here:
+        pesquisarCliente();
+    }//GEN-LAST:event_txtCliPesquisarKeyReleased
+
+    private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
+        // TODO add your handling code here:
+        preencherCampos();
+    }//GEN-LAST:event_tblClientesMouseClicked
+
+    private void radioOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOrcamentoActionPerformed
+        // TODO add your handling code here:
+        // Atribuindo um texnto a variavel tipo selecionado
+        tipo = "Orçamento";
+    }//GEN-LAST:event_radioOrcamentoActionPerformed
+
+    private void radioOrdemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOrdemActionPerformed
+        // TODO add your handling code here:
+        tipo = "OS";
+    }//GEN-LAST:event_radioOrdemActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        // TODO add your handling code here:
+        emitirOs();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnPesquisarOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarOsActionPerformed
+        // TODO add your handling code here:
+        pesquisarOS();
+    }//GEN-LAST:event_btnPesquisarOsActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        alterarOs();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        excluirOS();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,23 +541,243 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
+
+    private void emitirOs() {
+        String sql = "INSERT INTO ordens (tipo, situacao, funcionario, modelo, descricao, cor, valor_total, id_cliente) VALUES (?,?,?,?,?,?,?,?)";
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+
+            con = Conexao.createConnection();
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, tipo);
+            ps.setString(2, cboOsSituacao.getSelectedItem().toString());
+            ps.setString(3, txtFuncionario.getText());
+            ps.setString(4, txtModelo.getText());
+            ps.setString(5, txtDescricao.getText());
+            ps.setString(6, txtCor.getText());
+            ps.setString(7, txtValorTotal.getText().replace(",", "."));
+            ps.setString(8, txtClieId.getText());
+
+            if (txtClieId.getText().isEmpty() || txtModelo.getText().isEmpty() || txtDescricao.getText().isEmpty() || txtCor.getText().isEmpty() || txtClieId.getText().isEmpty() || txtValorTotal.getText().isEmpty() || txtFuncionario.getText().isEmpty() || cboOsSituacao.getSelectedItem().equals(" ")) {
+                JOptionPane.showMessageDialog(null, "Preenchas todos os campos obrigatorios");
+            } else {
+                int adicionado = ps.executeUpdate();
+                if (adicionado > 0) {
+                    JOptionPane.showMessageDialog(null, "OS emitida com sucesso");
+                    LimparCampos();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar OS " + e);
+        }
+    }
+
+    private void pesquisarOS() {
+        String num_os = JOptionPane.showInputDialog("Numero da OS");
+        String sql = "SELECT * FROM ordens WHERE os = " + num_os;
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                txtOs.setText(rs.getString(1));
+                txtData.setText(rs.getString(2));
+
+                // setando os radios 
+                String radioTipo = rs.getString(3);
+
+                if (radioTipo.equals("OS")) {
+                    radioOrdem.setSelected(true);
+                    tipo = "OS";
+                } else {
+                    radioOrcamento.setSelected(true);
+                    tipo = "Orçamento";
+                }
+
+                cboOsSituacao.setSelectedItem(rs.getString(4));
+                txtFuncionario.setText(rs.getString(5));
+                txtModelo.setText(rs.getString(6));
+                txtCor.setText(rs.getString(7));
+                txtDescricao.setText(rs.getString(8));
+                txtValorTotal.setText(rs.getString(9));
+                txtClieId.setText(rs.getString(10));
+                // Evitando 
+                btnCadastrar.setEnabled(false);
+                txtCliPesquisar.setEnabled(false);
+                tblClientes.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "OS nao cadastrada");
+            }
+
+        } catch (java.sql.SQLSyntaxErrorException e) {
+            JOptionPane.showMessageDialog(null, "OS INVALIDA");
+        } catch (Exception e2) {
+            System.out.println("Erro " + e2);
+        }
+    }
+
+    private void alterarOs() {
+        String sql = "UPDATE ordens set tipo=?, situacao=?, funcionario=?, modelo=?, cor=?, descricao=?, valor_total=? WHERE os=?";
+        try {
+
+            con = Conexao.createConnection();
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, tipo);
+            ps.setString(2, cboOsSituacao.getSelectedItem().toString());
+            ps.setString(3, txtFuncionario.getText());
+            ps.setString(4, txtModelo.getText());
+            ps.setString(5, txtDescricao.getText());
+            ps.setString(6, txtCor.getText());
+            ps.setString(7, txtValorTotal.getText().replace(",", "."));
+            ps.setString(8, txtOs.getText());
+
+            if (txtClieId.getText().isEmpty() || txtModelo.getText().isEmpty() || txtDescricao.getText().isEmpty() || txtCor.getText().isEmpty() || txtClieId.getText().isEmpty() || txtValorTotal.getText().isEmpty() || txtFuncionario.getText().isEmpty() || cboOsSituacao.getSelectedItem().equals(" ")) {
+                JOptionPane.showMessageDialog(null, "Preenchas todos os campos obrigatorios");
+            } else {
+                int adicionado = ps.executeUpdate();
+                if (adicionado > 0) {
+                    JOptionPane.showMessageDialog(null, "OS alterada com sucesso");
+                    LimparCampos();
+                    txtData.setText("");
+                    txtOs.setText("");
+
+                    btnCadastrar.setEnabled(true);
+                    txtCliPesquisar.setEnabled(true);
+                    tblClientes.setVisible(true);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao alterar OS " + e);
+        }
+    }
+
+    private void excluirOS() {
+        int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir a os?", "Atenção", JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            String sql = "DELETE from ordens where os=?";
+
+            try {
+                ps = con.prepareCall(sql);
+                ps.setString(1, txtOs.getText());
+                int apagado = ps.executeUpdate();
+
+                if (apagado > 0) {
+                    JOptionPane.showMessageDialog(null, "OS excluida com sucesso");
+
+                    LimparCampos();
+                    txtData.setText("");
+                    txtOs.setText("");
+
+                    btnCadastrar.setEnabled(true);
+                    txtCliPesquisar.setEnabled(true);
+                    tblClientes.setVisible(true);
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao excluir " + e);
+            }
+        }
+
+    }
+
+    private void LimparCampos() {
+        txtClieId.setText("");
+        txtCor.setText("");
+        txtDescricao.setText("");
+        txtModelo.setText("");
+        txtFuncionario.setText("");
+        txtValorTotal.setText("");
+        txtCliPesquisar.setText("");
+        ((DefaultTableModel) tblClientes.getModel()).setRowCount(0);
+        cboOsSituacao.setSelectedItem(" ");
+
+    }
+
+    private void pesquisarCliente() {
+        String sql = "SELECT id_cliente as Id, nome as Nome, celular as Fone from clientes where nome like ?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, txtCliPesquisar.getText() + "%");
+            rs = ps.executeQuery();
+
+            // Preencher os dados na tabela manualmente
+            DefaultTableModel tableModel = new DefaultTableModel();
+            tableModel.addColumn("Id");
+            tableModel.addColumn("Nome");
+            tableModel.addColumn("Telefone");
+
+            while (rs.next()) {
+                int idCliente = rs.getInt("Id");
+                String nomeCliente = rs.getString("Nome");
+                String telefoneCliente = rs.getString("Fone");
+
+                Object[] rowData = {idCliente, nomeCliente, telefoneCliente};
+                tableModel.addRow(rowData);
+            }
+
+            // Definir o modelo da tabela
+            tblClientes.setModel(tableModel);
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao pesquisar cliente " + e);
+        }
+    }
+
+    private void preencherCampos() {
+        int setar = tblClientes.getSelectedRow();
+
+        txtClieId.setText(tblClientes.getModel().getValueAt(setar, 0).toString());
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnPesquisarOs;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cboOsSituacao;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton radioOrcamento;
+    private javax.swing.JRadioButton radioOrdem;
+    private javax.swing.JTable tblClientes;
+    private javax.swing.JTextField txtCliPesquisar;
+    private javax.swing.JTextField txtClieId;
+    private javax.swing.JTextField txtCor;
+    private javax.swing.JTextField txtData;
+    private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextField txtFuncionario;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtOs;
+    private javax.swing.JTextField txtValorTotal;
     // End of variables declaration//GEN-END:variables
 }
