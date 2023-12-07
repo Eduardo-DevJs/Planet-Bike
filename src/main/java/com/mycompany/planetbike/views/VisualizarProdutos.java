@@ -6,6 +6,7 @@ package com.mycompany.planetbike.views;
 
 import com.mycompany.planetbike.dao.ProdutoDAO;
 import com.mycompany.planetbike.model.ProdutoModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -315,11 +316,13 @@ public class VisualizarProdutos extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Editar();
         ListarProdutos();
+        LimparCampos();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         Deletar();
         ListarProdutos();
+        LimparCampos();
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -412,8 +415,17 @@ public class VisualizarProdutos extends javax.swing.JFrame {
     }
     
     public void Deletar(){
-        int id = Integer.parseInt(txtId_produto.getText());
-        dao.deletarProduto(id);
+        
+        
+        int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir? ");
+         if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(null, "Ação cancelada");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+            int id = Integer.parseInt(txtId_produto.getText());
+            dao.deletarProduto(id);
+        }
     }
     
     public void LimparCampos(){
