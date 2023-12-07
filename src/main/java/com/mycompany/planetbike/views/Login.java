@@ -222,16 +222,18 @@ public class Login extends javax.swing.JFrame {
         String login = txtLogin.getText().toLowerCase();
         String senha = txtSenha.getText().toLowerCase();
         UsuarioModel usuario = new UsuarioModel(login, senha);
-        ResultSet rsetAdmin = dao.AutenticarLoginAdmin(usuario);
-        ResultSet rsetFunc = dao.AutenticarLoginFuncionario(usuario);
+        ResultSet rset = dao.AutenticarLogin(usuario);
         
         try {
-            if(rsetAdmin.next()){
+            if(rset.next()){
+                String perfil = rset.getString("perfil");
                 Menu menu = new Menu();
+                
+                if(perfil.equals("FUNCIONARIO")){
+                    menu.getBtnCadastrarFuncionario().setEnabled(false);
+                }
                 menu.setVisible(true);
                 dispose();
-            } else if(rsetFunc.next()){
-                JOptionPane.showMessageDialog(null, "Funcionario");
             }else{
                 JOptionPane.showMessageDialog(null, "Login ou senha invalidados");
             }
