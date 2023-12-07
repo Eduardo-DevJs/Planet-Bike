@@ -91,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(931, 463));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel4.setPreferredSize(new java.awt.Dimension(242, 180));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -133,7 +133,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         panelCadastroCliente.setBackground(new java.awt.Color(255, 255, 255));
-        panelCadastroCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelCadastroCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelCadastroCliente.setPreferredSize(new java.awt.Dimension(242, 180));
         panelCadastroCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -177,7 +177,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel6.setPreferredSize(new java.awt.Dimension(242, 180));
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -223,7 +223,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel7.setPreferredSize(new java.awt.Dimension(242, 180));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -262,7 +262,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         panelVisualizaClientes.setBackground(new java.awt.Color(255, 255, 255));
-        panelVisualizaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelVisualizaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelVisualizaClientes.setPreferredSize(new java.awt.Dimension(242, 180));
         panelVisualizaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -306,7 +306,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         panelEstoque.setBackground(new java.awt.Color(255, 255, 255));
-        panelEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelEstoque.setPreferredSize(new java.awt.Dimension(242, 180));
         panelEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
