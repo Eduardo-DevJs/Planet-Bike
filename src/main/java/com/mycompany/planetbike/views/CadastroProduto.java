@@ -119,7 +119,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
-        btnLimpar.setBackground(new java.awt.Color(207, 42, 39));
+        btnLimpar.setBackground(new java.awt.Color(255, 0, 0));
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnLimpar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpar.setText("LIMPAR");

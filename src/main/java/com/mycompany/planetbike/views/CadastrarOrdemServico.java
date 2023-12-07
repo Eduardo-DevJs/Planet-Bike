@@ -76,7 +76,6 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        btnImprimir = new javax.swing.JButton();
         btnPesquisarOs = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
 
@@ -386,12 +385,6 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel8.setText("Campos obrigatórios *");
 
-        btnImprimir.setBackground(new java.awt.Color(0, 128, 0));
-        btnImprimir.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        btnImprimir.setForeground(new java.awt.Color(255, 255, 255));
-        btnImprimir.setText("IMPRIMIR ORDEM");
-        btnImprimir.setEnabled(false);
-
         btnPesquisarOs.setBackground(new java.awt.Color(33, 150, 243));
         btnPesquisarOs.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         btnPesquisarOs.setForeground(new java.awt.Color(255, 255, 255));
@@ -437,8 +430,6 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
                         .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnImprimir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -471,7 +462,6 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
                     .addComponent(btnExcluir)
                     .addComponent(btnEditar)
                     .addComponent(btnCadastrar)
-                    .addComponent(btnImprimir)
                     .addComponent(btnPesquisarOs)
                     .addComponent(btnVoltar))
                 .addGap(30, 30, 30))
@@ -610,7 +600,6 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
                     //DESABILITAR BOTOES 
                     btnCadastrar.setEnabled(false);
                     btnPesquisarOs.setEnabled(false);
-                    btnImprimir.setEnabled(true);
                 }
             }
 
@@ -660,7 +649,6 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
                 //alterar botoes
                 btnEditar.setEnabled(true);
                 btnExcluir.setEnabled(true);
-                btnImprimir.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(null, "OS nao cadastrada");
             }
@@ -755,7 +743,6 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
         // Desabilitar os botoes 
         btnEditar.setEnabled(false);
         btnExcluir.setEnabled(false);
-        btnImprimir.setEnabled(false);
 
     }
 
@@ -801,7 +788,6 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnPesquisarOs;
     private javax.swing.JButton btnVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
