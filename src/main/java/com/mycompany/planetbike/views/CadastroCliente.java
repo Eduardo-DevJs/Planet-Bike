@@ -300,7 +300,6 @@ public class CadastroCliente extends javax.swing.JFrame {
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         // TODO add your handling code here:
         CadastroCliente();
-        limparCampos();
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -370,59 +369,53 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
     }
 
-    public void CadastroCliente() {
-        ClienteModel clienteModel = new ClienteModel();
+public void CadastroCliente() {
+    String nomeCliente = txtNome.getText();
+    String celularCliente = txtTelefone.getText();
+    String emailCliente = txtEmail.getText();
+    String cpfCliente = txtCpf.getText();
+    String cepCliente = txtCep.getText();
+    String enderecoCliente = txtBairro.getText();
+    String complemento = txtEndereco.getText();
 
-        String nomeCliente = txtNome.getText();
-        String celularCliente = txtTelefone.getText();
-        String emailCliente = txtEmail.getText();
-        String cpfCliente = txtCpf.getText();
-        String cepCliente = txtCep.getText();
-        String enderecoCliente = txtBairro.getText();
-        String complemento = txtEndereco.getText();
+    boolean sucesso = false;
 
-        boolean sucesso;
-
-        try {
-            // Verificar se todos os campos estão preenchidos
-            if (nomeCliente.isEmpty() || celularCliente.isEmpty() || emailCliente.isEmpty() || cpfCliente.isEmpty() || cepCliente.isEmpty() || enderecoCliente.isEmpty() || complemento.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
-                return;
-            }
-
-            // Validar o CPF antes de prosseguir
-            if (!ValidadorCPF.validarCPF(cpfCliente)) {
-                JOptionPane.showMessageDialog(null, "CPF inválido. Por favor, insira um CPF válido.");
-                return;
-            }
-
-            // Validar o e-mail antes de prosseguir
-            if (!ValidadorEmail.validarEmail(emailCliente)) {
-                JOptionPane.showMessageDialog(null, "E-mail inválido. Por favor, insira um e-mail válido.");
-                return;
-            }
-
-            // Continuar o fluxo apenas se todos os campos estão preenchidos e o CPF e o e-mail são válidos
+    try {
+        // Verificar se todos os campos estão preenchidos
+        if (nomeCliente.isEmpty() || celularCliente.isEmpty() || emailCliente.isEmpty() || cpfCliente.isEmpty() || cepCliente.isEmpty() || enderecoCliente.isEmpty() || complemento.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+        } else if (!ValidadorCPF.validarCPF(cpfCliente)) {
+            JOptionPane.showMessageDialog(null, "CPF inválido. Por favor, insira um CPF válido.");
+            txtCpf.requestFocus();
+        } else if (!ValidadorEmail.validarEmail(emailCliente)) {
+            JOptionPane.showMessageDialog(null, "E-mail inválido. Por favor, insira um e-mail válido.");
+            txtEmail.requestFocus();
+        } else {
+            // Se todos os campos estão preenchidos e os dados são válidos, continue o fluxo
             ClienteController clienteController = new ClienteController();
             sucesso = clienteController.CriarCliente(nomeCliente, celularCliente, emailCliente, cpfCliente, cepCliente, enderecoCliente, complemento);
-
-            if (sucesso) {
-                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-                int confirm = JOptionPane.showConfirmDialog(null, "Deseja voltar ao cadastro?");
-
-                if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
-                    Menu menu = new Menu();
-                    menu.setVisible(true);
-                    dispose();
-                }
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente. Preencha os campos corretamente.");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao cadastrar cliente " + e);
         }
+
+        if (sucesso) {
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            limparCampos();
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja voltar ao cadastro?");
+
+            if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
+                Menu menu = new Menu();
+                menu.setVisible(true);
+                dispose();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente. Preencha os campos corretamente.");
+        }
+    } catch (Exception e) {
+        System.out.println("Erro ao cadastrar cliente " + e);
     }
+}
+
+
 
     public void limparCampos() {
         txtCep.setText("");

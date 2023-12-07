@@ -107,7 +107,7 @@ public class CadastrarOrdemServico extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("Visualizar Ordem de Servico");
+        jLabel2.setText("Cadastrar Ordem de Servico");
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 0));
 
