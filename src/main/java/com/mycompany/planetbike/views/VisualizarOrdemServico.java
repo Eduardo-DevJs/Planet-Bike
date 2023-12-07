@@ -478,7 +478,7 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
 
     private void radioOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOrcamentoActionPerformed
         // TODO add your handling code here:
-        // Atribuindo um texnto a variavel tipo selecionado
+        // Atribuindo um texto a variavel tipo selecionado
         tipo = "Orçamento";
     }//GEN-LAST:event_radioOrcamentoActionPerformed
 
@@ -491,6 +491,7 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
         // TODO add your handling code here:
         emitirOs();
         LimparCampos();
+        btnPesquisarOs.setEnabled(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnPesquisarOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarOsActionPerformed
@@ -646,13 +647,15 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
             ps.setString(2, cboOsSituacao.getSelectedItem().toString());
             ps.setString(3, txtFuncionario.getText());
             ps.setString(4, txtModelo.getText());
-            ps.setString(5, txtDescricao.getText());
-            ps.setString(6, txtCor.getText());
+            ps.setString(5, txtCor.getText());
+            ps.setString(6, txtDescricao.getText());
             ps.setString(7, txtValorTotal.getText().replace(",", "."));
             ps.setString(8, txtOs.getText());
+            
+           
 
             if (txtClieId.getText().isEmpty() || txtModelo.getText().isEmpty() || txtDescricao.getText().isEmpty() || txtCor.getText().isEmpty() || txtClieId.getText().isEmpty() || txtValorTotal.getText().isEmpty() || txtFuncionario.getText().isEmpty() || cboOsSituacao.getSelectedItem().equals(" ")) {
-                JOptionPane.showMessageDialog(null, "Preenchas todos os campos obrigatorios");
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatorios");
             } else {
                 int adicionado = ps.executeUpdate();
                 if (adicionado > 0) {
@@ -754,7 +757,6 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
 
     private void preencherCampos() {
         int setar = tblClientes.getSelectedRow();
-
         txtClieId.setText(tblClientes.getModel().getValueAt(setar, 0).toString());
     }
 
