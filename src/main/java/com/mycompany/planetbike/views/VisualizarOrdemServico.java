@@ -490,6 +490,7 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
         emitirOs();
+        LimparCampos();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnPesquisarOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarOsActionPerformed
@@ -505,6 +506,7 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
         excluirOS();
+        btnPesquisarOs.setEnabled(true);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
@@ -568,7 +570,10 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
                 int adicionado = ps.executeUpdate();
                 if (adicionado > 0) {
                     JOptionPane.showMessageDialog(null, "OS emitida com sucesso");
-                    LimparCampos();
+                    //DESABILITAR BOTOES 
+                    btnCadastrar.setEnabled(false);
+                    btnPesquisarOs.setEnabled(false);
+                    btnImprimir.setEnabled(true);
                 }
             }
 
@@ -579,7 +584,7 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
 
     private void pesquisarOS() {
         String num_os = JOptionPane.showInputDialog("Numero da OS");
-        String sql = "SELECT * FROM ordens WHERE os = " + num_os;
+        String sql = "select os,date_format(data_os, '%d/%m/%Y - %H:%i'), tipo, situacao, funcionario, modelo, cor, descricao, valor_total, id_cliente from ordens where os=" + num_os;
 
         try {
             ps = con.prepareStatement(sql);
@@ -599,7 +604,8 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
                     radioOrcamento.setSelected(true);
                     tipo = "Orçamento";
                 }
-
+                
+                /// Define o item selecionado com base no valor obtido dos ResultsSet
                 cboOsSituacao.setSelectedItem(rs.getString(4));
                 txtFuncionario.setText(rs.getString(5));
                 txtModelo.setText(rs.getString(6));
@@ -607,10 +613,17 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
                 txtDescricao.setText(rs.getString(8));
                 txtValorTotal.setText(rs.getString(9));
                 txtClieId.setText(rs.getString(10));
-                // Evitando 
+                
+                // Evitando problemas
                 btnCadastrar.setEnabled(false);
+                btnPesquisarOs.setEnabled(false);
                 txtCliPesquisar.setEnabled(false);
                 tblClientes.setVisible(false);
+                
+                //alterar botoes
+                btnEditar.setEnabled(true);
+                btnExcluir.setEnabled(true);
+                btnImprimir.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(null, "OS nao cadastrada");
             }
@@ -648,7 +661,9 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
                     txtData.setText("");
                     txtOs.setText("");
 
+                    
                     btnCadastrar.setEnabled(true);
+                    btnPesquisarOs.setEnabled(true);
                     txtCliPesquisar.setEnabled(true);
                     tblClientes.setVisible(true);
                 }
@@ -698,6 +713,10 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
         txtCliPesquisar.setText("");
         ((DefaultTableModel) tblClientes.getModel()).setRowCount(0);
         cboOsSituacao.setSelectedItem(" ");
+        // Desabilitar os botoes 
+        btnEditar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        btnImprimir.setEnabled(false);
 
     }
 
@@ -715,6 +734,7 @@ public class VisualizarOrdemServico extends javax.swing.JFrame {
             tableModel.addColumn("Nome");
             tableModel.addColumn("Telefone");
 
+            // percorrer os dados da tabela
             while (rs.next()) {
                 int idCliente = rs.getInt("Id");
                 String nomeCliente = rs.getString("Nome");
