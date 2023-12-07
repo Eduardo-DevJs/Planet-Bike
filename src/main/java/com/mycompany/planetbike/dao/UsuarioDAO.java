@@ -22,20 +22,6 @@ public class UsuarioDAO {
     Connection con = null;
     PreparedStatement pstm = null;
     
-    public ResultSet AutenticarLoginAdmin(UsuarioModel user){
-        String sql = "select * from admin where login = ? and senha = ?";
-        con = Conexao.createConnection();
-        try {
-            pstm = con.prepareStatement(sql);
-            pstm.setString(1, user.getLogin());
-            pstm.setString(2,user.getSenha());
-            ResultSet rset = pstm.executeQuery();
-            return rset;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro Login Admin:"+e);
-            return null;
-        }   
-    }
     
     public ResultSet AutenticarLogin(UsuarioModel user){
         String sql = "select * from usuario where login = ? and senha = ?";
@@ -114,7 +100,7 @@ public class UsuarioDAO {
             pstm.setInt(4, func.getId());
             pstm.execute();
             JOptionPane.showMessageDialog(null, "Funcionario Editado");
-        } catch (Exception e) {
+        } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao editar funcionario: "+e);
         }
     }

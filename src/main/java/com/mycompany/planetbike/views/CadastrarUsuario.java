@@ -22,6 +22,7 @@ public class CadastrarUsuario extends javax.swing.JFrame {
         initComponents();
         txtId.setVisible(false);
         Mostrar();
+        txtLogin.requestFocus();
     }
 
     /**
@@ -374,8 +375,13 @@ public class CadastrarUsuario extends javax.swing.JFrame {
         String login = txtLogin.getText();
         String senha = txtSenha.getText();
         String perfil = comboPerfil.getSelectedItem().toString();
-        UsuarioModel user = new UsuarioModel(login, senha, perfil);
-        dao.CadastrarUsuario(user);
+        if(login.isEmpty() || senha.isEmpty()|| perfil.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        }else{
+            UsuarioModel user = new UsuarioModel(login, senha, perfil);
+            dao.CadastrarUsuario(user);
+        }
+        
     }
     
     public void Mostrar(){
@@ -402,8 +408,11 @@ public class CadastrarUsuario extends javax.swing.JFrame {
     }
     
     public void Deletar(){
-        int id = Integer.parseInt(txtId.getText()) ;
-        if(id > 0){
+        int id = Integer.parseInt(txtId.getText());
+        if(id == 1){
+            JOptionPane.showMessageDialog(null, "Não é possivel deletar esse Usuário");
+        }else{
+            if(id > 0){
             int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir? ");
             if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(null, "Ação cancelada");
@@ -411,9 +420,11 @@ public class CadastrarUsuario extends javax.swing.JFrame {
                 dao.DeletarFunc(id);
                 Limpar();
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "ID não válido");
+            }else{
+                JOptionPane.showMessageDialog(null, "ID não válido");
+            }
         }
+        
     }
     
     public void Atualizar(){
