@@ -426,6 +426,8 @@ public class VisualizarProdutos extends javax.swing.JFrame {
             
                 dao.deletarProduto(id);
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "ID não válido");
         }
         
     }

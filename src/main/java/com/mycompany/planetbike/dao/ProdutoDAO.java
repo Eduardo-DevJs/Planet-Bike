@@ -114,8 +114,6 @@ public class ProdutoDAO {
 
             preparedStatement.execute();
 
-            //JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
-
         } catch (Exception e) {
             System.out.println("Erro: " + e);
         }
