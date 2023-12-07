@@ -415,17 +415,19 @@ public class VisualizarProdutos extends javax.swing.JFrame {
     }
     
     public void Deletar(){
-        
-        
-        int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir? ");
-         if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(null, "Ação cancelada");
+        int id = Integer.parseInt(txtId_produto.getText());
+        if(id > 0){
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir? ");
+            if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Ação cancelada");
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
-            int id = Integer.parseInt(txtId_produto.getText());
-            dao.deletarProduto(id);
+            } else {
+                JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+            
+                dao.deletarProduto(id);
+            }
         }
+        
     }
     
     public void LimparCampos(){
