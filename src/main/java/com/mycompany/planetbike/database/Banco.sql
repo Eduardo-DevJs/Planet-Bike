@@ -8,20 +8,7 @@ senha varchar(50) not null,
 perfil varchar(50)
 );
 
-create table admin(
-Id int(11) primary key auto_increment not null,
-login varchar(200) not null,
-senha varchar(50) not null
-);
-
-INSERT INTO admin (login, senha) VALUES ('admin', 'admin');
-
-create table funcionario(
-Id int(11) primary key auto_increment not null,
-login varchar(200) not null,
-senha varchar(50) not null,
-perfil varchar(50)
-);
+INSERT INTO usuario (login, senha) VALUES ('admin', '12345');
 
 create table clientes (
 id_cliente int(10) primary key auto_increment not null,
