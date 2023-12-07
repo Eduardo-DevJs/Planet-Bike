@@ -12,14 +12,30 @@ public class UsuarioModel {
     int id;
     String login;
     String senha;
+    String perfil;
 
     public UsuarioModel() {
+    }
+
+    public UsuarioModel(String login, String senha, String perfil) {
+        this.login = login;
+        this.senha = senha;
+        this.perfil = perfil;
     }
 
     public UsuarioModel(String login, String senha) {
         this.login = login;
         this.senha = senha;
     }
+
+    public UsuarioModel(int id, String login, String senha, String perfil) {
+        this.id = id;
+        this.login = login;
+        this.senha = senha;
+        this.perfil = perfil;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -43,6 +59,14 @@ public class UsuarioModel {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
     
     

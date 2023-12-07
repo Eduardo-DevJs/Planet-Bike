@@ -4,6 +4,8 @@
  */
 package com.mycompany.planetbike.views;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author chxse
@@ -15,6 +17,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -546,6 +549,16 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
+
+    public JButton getBtnCadastrarFuncionario() {
+        return btnCadastrarFuncionario;
+    }
+
+    public void setBtnCadastrarFuncionario(JButton btnCadastrarFuncionario) {
+        this.btnCadastrarFuncionario = btnCadastrarFuncionario;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TelaMenu;
