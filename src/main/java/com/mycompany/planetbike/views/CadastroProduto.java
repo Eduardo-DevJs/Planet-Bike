@@ -387,6 +387,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             ProdutoModel add = new ProdutoModel(nome, Descricao, cpof, quantidade, valorUni, total);
             ProdutoDAO dao = new ProdutoDAO();
             dao.CadastrarProduto(add);
+            Limpar();
             int confirm = JOptionPane.showConfirmDialog(null, "Deseja continuar cadastrando?");
 
             if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
