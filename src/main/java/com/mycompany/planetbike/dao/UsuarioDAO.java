@@ -24,7 +24,7 @@ public class UsuarioDAO {
     
     
     public ResultSet AutenticarLogin(UsuarioModel user){
-        String sql = "select * from usuario where login = ? and senha = ?";
+        String sql = "select * from usuarios where login = ? and senha = ?";
         con = Conexao.createConnection();
         try {
             pstm = con.prepareStatement(sql);
@@ -39,7 +39,7 @@ public class UsuarioDAO {
     }
     
     public void CadastrarUsuario(UsuarioModel func){
-        String sql = "insert into usuario (login,senha,perfil) values(?,?,?)";
+        String sql = "insert into usuarios (login,senha,perfil) values(?,?,?)";
         con = Conexao.createConnection();
         try {
             pstm = con.prepareStatement(sql);
@@ -54,7 +54,7 @@ public class UsuarioDAO {
     }
     
     public List<UsuarioModel> MostrarFunci(){
-        String sql = "select * from usuario";
+        String sql = "select * from usuarios";
         con = Conexao.createConnection();
         ArrayList<UsuarioModel> funcs = new ArrayList<>();
         try {
@@ -70,13 +70,13 @@ public class UsuarioDAO {
             }
             return funcs;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro mostrar funcionario: "+e);
+            JOptionPane.showMessageDialog(null, "Erro mostrar funcionario: " + e);
             return null;
         }
     }
     
     public void DeletarFunc(int id){
-        String sql = "delete from usuario where id = ?";
+        String sql = "delete from usuarios where id = ?";
         con = Conexao.createConnection();
         try {
             pstm = con.prepareStatement(sql);
@@ -84,12 +84,12 @@ public class UsuarioDAO {
             pstm.execute();
             JOptionPane.showMessageDialog(null, "Funcionario Deletado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao Deletar funcionario:"+e);
+            JOptionPane.showMessageDialog(null, "Erro ao Deletar funcionario:" + e);
         }
     }
     
     public void AtualizarFuncionario(UsuarioModel func){
-        String sql = "update usuario set login = ?, senha =?, perfil = ? where id =?";
+        String sql = "update usuarios set login = ?, senha =?, perfil = ? where id =?";
         con = Conexao.createConnection();
         try {
             pstm = con.prepareStatement(sql);
